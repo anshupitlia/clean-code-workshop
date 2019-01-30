@@ -33,6 +33,20 @@ public class Customer {
     return result;
   }
 
+  public String htmlStatement() {
+    String result = "<h1>Rental Record for <b>" + getName() + "</b></h1><br/>";
+
+    for (Rental each : rentals) {
+      result += each.getFormattedHTMLStringForTitle() + " " + String.valueOf(each.amount()) + "<br/>";
+    }
+
+    //add footer lines result
+    result += "Amount owed is <b>" + String.valueOf(getTotalAmount()) + "</b><br/>";
+    result += "You earned <b>" + String.valueOf(getFrequentRenterPoints())
+        + "</b> frequent renter points";
+    return result;
+  }
+
   private int getFrequentRenterPoints() {
     int frequentRenterPoints = 0;
     for (Rental each : rentals) {

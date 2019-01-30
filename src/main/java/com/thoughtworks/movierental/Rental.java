@@ -51,4 +51,8 @@ public class Rental {
   String getFormattedStringForTitle() {
     return "\t" + movie.getTitle() + "\t";
   }
+
+  String getFormattedHTMLStringForTitle() {
+    return  movie.getTitle();
+  }
 }

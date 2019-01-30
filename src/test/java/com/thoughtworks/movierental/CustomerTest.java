@@ -123,4 +123,25 @@ public class CustomerTest {
                 + "You earned 4 frequent renter points";
         Assert.assertEquals("Result not equal", expectedResult, customer.statement());
     }
+
+    @Test
+    public void testStatementReturnsHTMLResultForMoviesOfAllKindsFor4Days(){
+        Movie movieRegular = new Movie("Titanic", Movie.REGULAR);
+        Movie movieChildren = new Movie("Power Puff Girls", Movie.CHILDRENS);
+        Movie movieNewRelease = new Movie("Aquaman", Movie.NEW_RELEASE);
+        Rental rentalRegular = new Rental(movieRegular, 4);
+        Rental rentalChildren = new Rental(movieChildren, 4);
+        Rental rentalNewRelease = new Rental(movieNewRelease, 4);
+        Customer customer = new Customer("Customer1");
+        customer.addRental(rentalRegular);
+        customer.addRental(rentalChildren);
+        customer.addRental(rentalNewRelease);
+        String expectedResult = "<h1>Rental Record for <b>Customer1</b></h1><br/>"
+                + "Titanic 5.0<br/>"
+                + "Power Puff Girls 3.0<br/>"
+                + "Aquaman 12.0<br/>"
+                + "Amount owed is <b>20.0</b><br/>"
+                + "You earned <b>4</b> frequent renter points";
+        Assert.assertEquals("Result not equal", expectedResult, customer.htmlStatement());
+    }
 }
